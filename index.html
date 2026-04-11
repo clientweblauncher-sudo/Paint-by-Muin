@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PaintByMuin | Luxury Custom Art</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-color: #050505;
+            --primary-gold: #D4AF37;
+            --primary-purple: #2a0845;
+            --text-light: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: none; /* Custom cursor */
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-light);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Custom Cursor */
+        .cursor-dot, .cursor-outline {
+            position: fixed;
+            top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        .cursor-dot {
+            width: 8px; height: 8px;
+            background-color: var(--primary-gold);
+        }
+        .cursor-outline {
+            width: 40px; height: 40px;
+            border: 1px solid var(--primary-gold);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: var(--bg-color);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            transition: opacity 1s ease;
+        }
+        .loader-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--primary-gold);
+            letter-spacing: 5px;
+            animation: pulse 1.5s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; filter: drop-shadow(0 0 5px var(--primary-gold)); }
+            100% { opacity: 1; filter: drop-shadow(0 0 20px var(--primary-gold)); }
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0; width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+        }
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: radial-gradient(circle at center, var(--primary-purple) 0%, var(--bg-color) 70%);
+            overflow: hidden;
+        }
+        #hero-canvas {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 1;
+            opacity: 0.4;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 20px;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #fff, var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+        }
+        .btn {
+            padding: 15px 35px;
+            border: 1px solid var(--primary-gold);
+            background: transparent;
+            color: var(--primary-gold);
+            font-size: 1rem;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            margin: 0 10px;
+            display: inline-block;
+        }
+        .btn:hover {
+            background: var(--primary-gold);
+            color: var(--bg-color);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+        .btn-solid {
+            background: var(--primary-gold);
+            color: var(--bg-color);
+        }
+
+        /* Sections General */
+        section {
+            padding: 100px 50px;
+            position: relative;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            color: var(--text-light);
+        }
+        .section-title span {
+            color: var(--primary-gold);
+        }
+
+        /* Glassmorphism Cards General */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.4s, box-shadow 0.4s;
+        }
+        .glass-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        /* About Section */
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .about-img {
+            flex: 1;
+            position: relative;
+        }
+        .about-img img {
+            width: 100%;
+            border-radius: 20px;
+            filter: grayscale(20%);
+            transition: filter 0.5s;
+        }
+        .about-img img:hover {
+            filter: grayscale(0%);
+        }
+        .about-img::after {
+            content: '';
+            position: absolute;
+            top: 20px; left: 20px;
+            width: 100%; height: 100%;
+            border: 2px solid var(--primary-gold);
+            border-radius: 20px;
+            z-index: -1;
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .about-text p {
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* Services */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin-bottom: 20px;
+        }
+
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            height: 300px;
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 5, 5, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+        .gallery-overlay i {
+            font-size: 2rem;
+            color: var(--primary-gold);
+        }
+
+        /* Lightbox */
+        #lightbox {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100vh;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        #lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+        }
+        #lightbox-close {
+            position: absolute;
+            top: 30px; right: 40px;
+            font-size: 2rem;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Process Timeline */
+        .timeline {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            width: 2px; height: 100%;
+            background: var(--glass-border);
+        }
+        .timeline-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        .timeline-content {
+            width: 45%;
+        }
+        .timeline-dot {
+            width: 20px; height: 20px;
+            background: var(--primary-gold);
+            border-radius: 50%;
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 15px var(--primary-gold);
+        }
+
+        /* Pricing */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .pricing-card.premium {
+            border-color: var(--primary-gold);
+            transform: scale(1.05);
+            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(212,175,55,0.05));
+        }
+        .pricing-card.premium:hover {
+            transform: scale(1.05) translateY(-10px);
+        }
+        .price {
+            font-size: 2.5rem;
+            color: var(--primary-gold);
+            margin: 20px 0;
+            font-family: 'Playfair Display', serif;
+        }
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+        .pricing-features li {
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+        .pricing-features li i {
+            color: var(--primary-gold);
+            margin-right: 10px;
+        }
+
+        /* Contact & Footer */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .contact-form input, .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        .contact-form input:focus, .contact-form textarea:focus {
+            border-color: var(--primary-gold);
+        }
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid var(--glass-border);
+            margin-top: 50px;
+        }
+        .social-icons a {
+            color: var(--text-light);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        .social-icons a:hover {
+            color: var(--primary-gold);
+        }
+
+        /* WhatsApp Floating */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 40px; right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            width: 60px; height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 20px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-container { flex-direction: column; }
+            .timeline::before { left: 20px; }
+            .timeline-dot { left: 20px; transform: translateX(-50%); }
+            .timeline-item, .timeline-item:nth-child(even) { flex-direction: column; align-items: flex-start; padding-left: 50px; }
+            .timeline-content { width: 100%; }
+            .pricing-card.premium { transform: scale(1); }
+            .pricing-card.premium:hover { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <div id="preloader">
+        <div class="loader-text">PaintByMuin</div>
+    </div>
+
+    <nav>
+        <a href="#" class="logo">PaintByMuin.</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-content gs-reveal">
+            <h1>Turn Your Imagination Into Art</h1>
+            <p>Custom Paintings, Portraits & Exquisite Artistic Creations.</p>
+            <a href="#contact" class="btn btn-solid">Order Now</a>
+            <a href="#gallery" class="btn">View Gallery</a>
+        </div>
+    </header>
+
+    <section id="about">
+        <div class="about-container">
+            <div class="about-img gs-reveal-left">
+                <img src="image/CO.png" alt="Artist Profile">
+            </div>
+            <div class="about-text gs-reveal-right">
+                <h2 class="section-title">The <span>Artist</span> Behind the Canvas</h2>
+                <p>At PaintByMuin, every stroke tells a story. We believe that art is not just seen; it is felt. Specializing in high-end bespoke creations, we bridge the gap between abstract imagination and tangible beauty.</p>
+                <p>From stunning custom portraits that capture a moment in time to grand abstract pieces designed for modern luxury spaces, our mission is to deliver art that breathes life into your environment.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title gs-reveal">Our <span>Expertise</span></h2>
+        <div class="services-grid">
+            <div class="glass-card gs-reveal-up">
+                <i class="fa-solid fa-user-pen service-icon"></i>
+                <h3>Custom Portraits</h3>
+                <p>Lifelike, hand-painted portraits capturing the true essence and emotion of your loved ones.</p>
+            </div>
+            <div class="glass-card gs-reveal-up" style="transition-delay: 0.1s;">
+                <i class="fa-solid fa-palette service-icon"></i>
+                <h3>Abstract Art</h3>
+                <p>Modern, textured abstract canvases designed to be the centerpiece of luxury interiors.</p>
+            </div>
+            <div class="glass-card gs-reveal-up" style="transition-delay: 0.2s;">
+                <i class="fa-solid fa-gift service-icon"></i>
+                <h3>Gift Paintings</h3>
+                <p>Personalized art pieces perfect for weddings, anniversaries, and unforgettable gifts.</p>
+            </div>
+            <div class="glass-card gs-reveal-up" style="transition-delay: 0.3s;">
+                <i class="fa-solid fa-wand-magic-sparkles service-icon"></i>
+                <h3>Digital to Hand-Painted</h3>
+                <p>Transform your favorite digital photos into premium, textured canvas masterpieces.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery">
+        <h2 class="section-title gs-reveal">Curated <span>Gallery</span></h2>
+        <div class="gallery-grid">
+            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint1.webp')">
+                <img src="image/paint1.webp" alt="Art 1">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint2.webp')">
+                <img src="image/paint2.webp" alt="Art 2">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint3.webp')">
+                <img src="image/paint3.webp" alt="Art 3">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint4.webp')">
+                <img src="image/paint4.webp" alt="Art 4">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint5.webp')">
+                <img src="image/paint5.webp" alt="Art 5">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint6.webp')">
+                <img src="image/paint6.webp" alt="Art 6">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint7.webp')">
+                <img src="image/paint7.webp" alt="Art 7">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint8.webp')">
+                <img src="image/paint8.webp" alt="Art 8">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint9.webp')">
+                <img src="image/paint9.webp" alt="Art 9">
+                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <div id="lightbox" onclick="closeLightbox()">
+        <i class="fa-solid fa-xmark" id="lightbox-close"></i>
+        <img id="lightbox-img" src="" alt="Full Art">
+    </div>
+
+    <section id="process">
+        <h2 class="section-title gs-reveal">How It <span>Works</span></h2>
+        <div class="timeline">
+            <div class="timeline-item gs-reveal-up">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content glass-card">
+                    <h3>1. Upload & Consult</h3>
+                    <p>Share your vision, photo, or concept. We discuss the mood, size, and specific requirements for your custom piece.</p>
+                </div>
+            </div>
+            <div class="timeline-item gs-reveal-up">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content glass-card">
+                    <h3>2. The Creation</h3>
+                    <p>The artist begins the detailed painting process, using premium quality canvases and high-grade professional paints.</p>
+                </div>
+            </div>
+            <div class="timeline-item gs-reveal-up">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content glass-card">
+                    <h3>3. Final Polish & Delivery</h3>
+                    <p>After your approval of the final digital preview, the artwork is varnished, securely packaged, and shipped to your doorstep.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <h2 class="section-title gs-reveal">Investment in <span>Art</span></h2>
+        <div class="pricing-grid">
+            <div class="glass-card gs-reveal-up">
+                <h3>Standard Portrait</h3>
+                <div class="price">₹4,999</div>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> A4 / 8x12 inches Size</li>
+                    <li><i class="fa-solid fa-check"></i> Single Face Portrait</li>
+                    <li><i class="fa-solid fa-check"></i> Standard Frame Included</li>
+                    <li><i class="fa-solid fa-check"></i> 7-10 Days Delivery</li>
+                </ul>
+                <a href="#contact" class="btn">Choose Plan</a>
+            </div>
+            <div class="glass-card premium gs-reveal-up">
+                <h3>Premium Canvas</h3>
+                <div class="price">₹12,999</div>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> A2 / 16x24 inches Size</li>
+                    <li><i class="fa-solid fa-check"></i> Couple or Family Portrait</li>
+                    <li><i class="fa-solid fa-check"></i> Premium Gallery Wrap</li>
+                    <li><i class="fa-solid fa-check"></i> VIP Shipping & Packaging</li>
+                </ul>
+                <a href="#contact" class="btn btn-solid">Choose Premium</a>
+            </div>
+            <div class="glass-card gs-reveal-up">
+                <h3>Custom Abstract</h3>
+                <div class="price">Custom</div>
+                <ul class="pricing-features">
+                    <li><i class="fa-solid fa-check"></i> Any Custom Dimensions</li>
+                    <li><i class="fa-solid fa-check"></i> Color Palette Matching</li>
+                    <li><i class="fa-solid fa-check"></i> Interior Design Consultation</li>
+                    <li><i class="fa-solid fa-check"></i> Authenticity Certificate</li>
+                </ul>
+                <a href="#contact" class="btn">Get a Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2 class="section-title gs-reveal">Start Your <span>Masterpiece</span></h2>
+        <div class="contact-container glass-card gs-reveal-up">
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <input type="tel" placeholder="Phone Number">
+                <textarea rows="5" placeholder="Tell us about your art requirements..." required></textarea>
+                <button type="button" class="btn btn-solid" style="width: 100%;">Submit Request</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <h2 class="logo">PaintByMuin.</h2>
+        <p style="color: var(--text-muted); margin: 20px 0;">Elevating spaces with handcrafted luxury art.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+        </div>
+        <p style="color: var(--text-muted); margin-top: 20px; font-size: 0.9rem;">&copy; 2026 PaintByMuin. All rights reserved.</p>
+    </footer>
+
+    <a href="https://wa.me/910000000000" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <script>
+        // Preloader Logic
+        window.addEventListener("load", () => {
+            const preloader = document.getElementById("preloader");
+            setTimeout(() => {
+                preloader.style.opacity = "0";
+                setTimeout(() => {
+                    preloader.style.display = "none";
+                }, 1000);
+            }, 800);
+        });
+
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector(".cursor-dot");
+        const cursorOutline = document.querySelector(".cursor-outline");
+
+        window.addEventListener("mousemove", (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+
+            // Adding slight delay for outline (smooth effect)
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
+        });
+
+        // Interactive Canvas Background (Subtle floating paint particles)
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray = [];
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.color = Math.random() > 0.5 ? '#D4AF37' : '#4B0082';
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.size > 0.2) this.size -= 0.005;
+            }
+            draw() {
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+        function handleParticles() {
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+                if (particlesArray[i].size <= 0.3) {
+                    particlesArray.splice(i, 1);
+                    i--;
+                }
+            }
+        }
+        function animateCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            if(particlesArray.length < 50) {
+                particlesArray.push(new Particle());
+            }
+            handleParticles();
+            requestAnimationFrame(animateCanvas);
+        }
+        animateCanvas();
+
+        // Window resize canvas fix
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // GSAP Scroll Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // General Fade Up Reveal
+        gsap.utils.toArray('.gs-reveal-up').forEach(function(elem) {
+            gsap.fromTo(elem, 
+                { y: 50, opacity: 0 }, 
+                { y: 0, opacity: 1, duration: 1, ease: "power3.out",
+                  scrollTrigger: { trigger: elem, start: "top 85%" }
+                }
+            );
+        });
+
+        // Left Reveal
+        gsap.utils.toArray('.gs-reveal-left').forEach(function(elem) {
+            gsap.fromTo(elem, 
+                { x: -50, opacity: 0 }, 
+                { x: 0, opacity: 1, duration: 1, ease: "power3.out",
+                  scrollTrigger: { trigger: elem, start: "top 85%" }
+                }
+            );
+        });
+
+        // Right Reveal
+        gsap.utils.toArray('.gs-reveal-right').forEach(function(elem) {
+            gsap.fromTo(elem, 
+                { x: 50, opacity: 0 }, 
+                { x: 0, opacity: 1, duration: 1, ease: "power3.out",
+                  scrollTrigger: { trigger: elem, start: "top 85%" }
+                }
+            );
+        });
+
+        // Lightbox Functions
+        function openLightbox(imageSrc) {
+            document.getElementById('lightbox-img').src = imageSrc;
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Stop background scrolling
+        }
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto'; // Restore background scrolling
+        }
+    </script>
+</body>
+</html>
