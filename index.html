@@ -3,249 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PaintByMuin | Luxury Custom Art</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>PaintByMuin | Professional Home & Art Painting Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --bg-color: #050505;
-            --primary-gold: #D4AF37;
-            --primary-purple: #2a0845;
-            --text-light: #f5f5f5;
-            --text-muted: #a0a0a0;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary: #F26422; /* Vibrant Orange for Action */
+            --secondary: #1E293B; /* Dark Blue/Slate for Trust */
+            --light-bg: #F8FAFC;
+            --white: #FFFFFF;
+            --text-dark: #334155;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: none; /* Custom cursor */
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-light);
-            overflow-x: hidden;
-            scroll-behavior: smooth;
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
+        a {
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
 
-        /* Custom Cursor */
-        .cursor-dot, .cursor-outline {
-            position: fixed;
-            top: 0; left: 0;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            z-index: 9999;
-            pointer-events: none;
-        }
-        .cursor-dot {
-            width: 8px; height: 8px;
-            background-color: var(--primary-gold);
-        }
-        .cursor-outline {
-            width: 40px; height: 40px;
-            border: 1px solid var(--primary-gold);
-            transition: width 0.2s, height 0.2s, background-color 0.2s;
-        }
-
-        /* Preloader */
-        #preloader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            background: var(--bg-color);
-            z-index: 10000;
+        /* Top Bar */
+        .top-bar {
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 8px 50px;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            transition: opacity 1s ease;
+            justify-content: space-between;
+            font-size: 0.85rem;
         }
-        .loader-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            color: var(--primary-gold);
-            letter-spacing: 5px;
-            animation: pulse 1.5s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.5; filter: drop-shadow(0 0 5px var(--primary-gold)); }
-            100% { opacity: 1; filter: drop-shadow(0 0 20px var(--primary-gold)); }
+        .top-bar-links a {
+            color: var(--white);
+            margin-left: 15px;
         }
 
         /* Navbar */
         nav {
-            position: fixed;
-            top: 0; width: 100%;
-            padding: 20px 50px;
+            padding: 15px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
             z-index: 1000;
-            background: rgba(5, 5, 5, 0.8);
-            backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass-border);
         }
         .logo {
-            font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: var(--primary-gold);
-            font-weight: 700;
-            text-decoration: none;
+            font-weight: 800;
+            color: var(--secondary);
+        }
+        .logo span {
+            color: var(--primary);
+        }
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            align-items: center;
         }
         .nav-links a {
-            color: var(--text-light);
-            text-decoration: none;
-            margin-left: 30px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
+            color: var(--secondary);
+            font-weight: 500;
         }
         .nav-links a:hover {
-            color: var(--primary-gold);
+            color: var(--primary);
+        }
+        .btn {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #d9561b;
+            color: var(--white);
         }
 
         /* Hero Section */
         .hero {
-            height: 100vh;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            background: radial-gradient(circle at center, var(--primary-purple) 0%, var(--bg-color) 70%);
-            overflow: hidden;
-        }
-        #hero-canvas {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 1;
-            opacity: 0.4;
+            justify-content: space-between;
+            padding: 60px 50px;
+            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
+            min-height: 80vh;
         }
         .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 20px;
+            max-width: 50%;
         }
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 3.5rem;
+            color: var(--secondary);
+            line-height: 1.2;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, #fff, var(--primary-gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
         }
         .hero p {
             font-size: 1.2rem;
             color: var(--text-muted);
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
-        .btn {
-            padding: 15px 35px;
-            border: 1px solid var(--primary-gold);
-            background: transparent;
-            color: var(--primary-gold);
-            font-size: 1rem;
-            cursor: pointer;
-            text-decoration: none;
-            border-radius: 30px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            margin: 0 10px;
-            display: inline-block;
-        }
-        .btn:hover {
-            background: var(--primary-gold);
-            color: var(--bg-color);
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
-        }
-        .btn-solid {
-            background: var(--primary-gold);
-            color: var(--bg-color);
-        }
-
-        /* Sections General */
-        section {
-            padding: 100px 50px;
-            position: relative;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 60px;
-            color: var(--text-light);
-        }
-        .section-title span {
-            color: var(--primary-gold);
-        }
-
-        /* Glassmorphism Cards General */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
+        .hero-form {
+            background: var(--white);
             padding: 30px;
-            transition: transform 0.4s, box-shadow 0.4s;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            width: 400px;
         }
-        .glass-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
-            border-color: rgba(212, 175, 55, 0.3);
+        .hero-form h3 {
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .hero-form .btn {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
         }
 
-        /* About Section */
-        .about-container {
+        /* Features Ribbon */
+        .features-ribbon {
+            display: flex;
+            justify-content: space-around;
+            padding: 30px 50px;
+            background: var(--white);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.02);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .feature-item {
             display: flex;
             align-items: center;
-            gap: 50px;
-            max-width: 1200px;
-            margin: 0 auto;
+            gap: 15px;
         }
-        .about-img {
-            flex: 1;
-            position: relative;
+        .feature-item i {
+            font-size: 2rem;
+            color: var(--primary);
         }
-        .about-img img {
-            width: 100%;
-            border-radius: 20px;
-            filter: grayscale(20%);
-            transition: filter 0.5s;
+        .feature-item h4 {
+            color: var(--secondary);
+            font-size: 1.1rem;
         }
-        .about-img img:hover {
-            filter: grayscale(0%);
-        }
-        .about-img::after {
-            content: '';
-            position: absolute;
-            top: 20px; left: 20px;
-            width: 100%; height: 100%;
-            border: 2px solid var(--primary-gold);
-            border-radius: 20px;
-            z-index: -1;
-        }
-        .about-text {
-            flex: 1;
-        }
-        .about-text h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        .about-text p {
+        .feature-item p {
+            font-size: 0.85rem;
             color: var(--text-muted);
-            line-height: 1.8;
-            margin-bottom: 20px;
         }
 
-        /* Services */
+        /* Services Section */
+        .section {
+            padding: 80px 50px;
+            text-align: center;
+            background-color: var(--light-bg);
+        }
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 50px;
+            font-size: 1.1rem;
+        }
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -253,13 +200,50 @@
             max-width: 1200px;
             margin: 0 auto;
         }
-        .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary-gold);
-            margin-bottom: 20px;
+        .service-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            text-align: left;
+        }
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        .service-img {
+            height: 200px;
+            background-color: #ddd;
+            overflow: hidden;
+        }
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .service-content {
+            padding: 25px;
+        }
+        .service-content h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        .service-content p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 15px;
+        }
+        .service-link {
+            color: var(--primary);
+            font-weight: 600;
         }
 
-        /* Gallery */
+        /* Projects / Gallery */
+        .gallery-section {
+            padding: 80px 50px;
+            background: var(--white);
+        }
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -268,542 +252,384 @@
             margin: 0 auto;
         }
         .gallery-item {
-            position: relative;
-            border-radius: 15px;
+            border-radius: 10px;
             overflow: hidden;
-            height: 300px;
+            height: 250px;
         }
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s ease;
+            transition: transform 0.5s;
         }
-        .gallery-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 5, 5, 0.7);
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Trust Section (Why Us) */
+        .trust-section {
+            padding: 80px 50px;
+            background: var(--secondary);
+            color: var(--white);
+            text-align: center;
+        }
+        .trust-section .section-title {
+            color: var(--white);
+        }
+        .process-steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+            flex-wrap: wrap;
+        }
+        .step {
+            max-width: 250px;
+        }
+        .step-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-        .gallery-overlay i {
             font-size: 2rem;
-            color: var(--primary-gold);
+            margin: 0 auto 20px;
+        }
+        .step h4 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .step p {
+            font-size: 0.9rem;
+            color: #cbd5e1;
         }
 
-        /* Lightbox */
-        #lightbox {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100vh;
-            background: rgba(0,0,0,0.9);
-            z-index: 2000;
-            display: none;
-            justify-content: center;
-            align-items: center;
+        /* Footer */
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            padding: 60px 50px 20px;
         }
-        #lightbox img {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 40px;
         }
-        #lightbox-close {
-            position: absolute;
-            top: 30px; right: 40px;
-            font-size: 2rem;
-            color: #fff;
-            cursor: pointer;
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--white);
+            margin-bottom: 15px;
+            display: inline-block;
         }
-
-        /* Process Timeline */
-        .timeline {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
+        .footer-logo span {
+            color: var(--primary);
         }
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 50%;
-            width: 2px; height: 100%;
-            background: var(--glass-border);
+        .footer-col h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
         }
-        .timeline-item {
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        .footer-col ul li a {
+            color: #94a3b8;
+        }
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+        .footer-bottom {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 50px;
-            position: relative;
+            font-size: 0.9rem;
         }
-        .timeline-item:nth-child(even) {
-            flex-direction: row-reverse;
+        
+        /* THE CLICKABLE DEV LINK AS REQUESTED */
+        .developer-credit {
+            font-weight: 500;
         }
-        .timeline-content {
-            width: 45%;
+        .developer-credit a {
+            color: var(--primary);
+            font-weight: 700;
         }
-        .timeline-dot {
-            width: 20px; height: 20px;
-            background: var(--primary-gold);
-            border-radius: 50%;
-            position: absolute;
-            left: 50%;
-            transform: translateX(-50%);
-            box-shadow: 0 0 15px var(--primary-gold);
+        .developer-credit a:hover {
+            color: var(--white);
+            text-decoration: underline;
         }
 
-        /* Pricing */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        .pricing-card.premium {
-            border-color: var(--primary-gold);
-            transform: scale(1.05);
-            background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(212,175,55,0.05));
-        }
-        .pricing-card.premium:hover {
-            transform: scale(1.05) translateY(-10px);
-        }
-        .price {
-            font-size: 2.5rem;
-            color: var(--primary-gold);
-            margin: 20px 0;
-            font-family: 'Playfair Display', serif;
-        }
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 30px;
-        }
-        .pricing-features li {
-            margin-bottom: 10px;
-            color: var(--text-muted);
-        }
-        .pricing-features li i {
-            color: var(--primary-gold);
-            margin-right: 10px;
-        }
-
-        /* Contact & Footer */
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .contact-form input, .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid var(--glass-border);
-            border-radius: 10px;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-        .contact-form input:focus, .contact-form textarea:focus {
-            border-color: var(--primary-gold);
-        }
-        footer {
-            text-align: center;
-            padding: 40px;
-            border-top: 1px solid var(--glass-border);
-            margin-top: 50px;
-        }
-        .social-icons a {
-            color: var(--text-light);
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-        .social-icons a:hover {
-            color: var(--primary-gold);
-        }
-
-        /* WhatsApp Floating */
-        .whatsapp-float {
+        /* WhatsApp Button */
+        .whatsapp-btn {
             position: fixed;
-            bottom: 40px; right: 40px;
-            background-color: #25d366;
-            color: #FFF;
-            border-radius: 50px;
-            text-align: center;
-            font-size: 30px;
-            width: 60px; height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0px 0px 20px rgba(37, 211, 102, 0.5);
+            font-size: 35px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             z-index: 1000;
-            text-decoration: none;
             transition: transform 0.3s;
         }
-        .whatsapp-float:hover {
+        .whatsapp-btn:hover {
             transform: scale(1.1);
+            color: white;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+            }
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
             .hero h1 { font-size: 2.5rem; }
-            .about-container { flex-direction: column; }
-            .timeline::before { left: 20px; }
-            .timeline-dot { left: 20px; transform: translateX(-50%); }
-            .timeline-item, .timeline-item:nth-child(even) { flex-direction: column; align-items: flex-start; padding-left: 50px; }
-            .timeline-content { width: 100%; }
-            .pricing-card.premium { transform: scale(1); }
-            .pricing-card.premium:hover { transform: translateY(-10px); }
+            .features-ribbon { flex-direction: column; gap: 20px; }
+            nav { padding: 15px 20px; }
+            .nav-links { display: none; /* Add hamburger menu logic for mobile later */ }
+            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <div class="cursor-dot"></div>
-    <div class="cursor-outline"></div>
-
-    <div id="preloader">
-        <div class="loader-text">PaintByMuin</div>
+    <div class="top-bar">
+        <div><i class="fa-solid fa-phone"></i> +91 98765 43210</div>
+        <div class="top-bar-links">
+            <a href="#">Track Project</a>
+            <a href="#">Become a Partner</a>
+        </div>
     </div>
 
     <nav>
-        <a href="#" class="logo">PaintByMuin.</a>
+        <a href="#" class="logo">PaintBy<span>Muin</span></a>
         <div class="nav-links">
-            <a href="#about">About</a>
             <a href="#services">Services</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#contact">Contact</a>
+            <a href="#projects">Recent Projects</a>
+            <a href="#process">How it Works</a>
+            <a href="#contact" class="btn">Get a Quote</a>
         </div>
     </nav>
 
-    <header class="hero" id="home">
-        <canvas id="hero-canvas"></canvas>
-        <div class="hero-content gs-reveal">
-            <h1>Turn Your Imagination Into Art</h1>
-            <p>Custom Paintings, Portraits & Exquisite Artistic Creations.</p>
-            <a href="#contact" class="btn btn-solid">Order Now</a>
-            <a href="#gallery" class="btn">View Gallery</a>
-        </div>
-    </header>
-
-    <section id="about">
-        <div class="about-container">
-            <div class="about-img gs-reveal-left">
-                <img src="image/CO.png" alt="Artist Profile">
-            </div>
-            <div class="about-text gs-reveal-right">
-                <h2 class="section-title">The <span>Artist</span> Behind the Canvas</h2>
-                <p>At PaintByMuin, every stroke tells a story. We believe that art is not just seen; it is felt. Specializing in high-end bespoke creations, we bridge the gap between abstract imagination and tangible beauty.</p>
-                <p>From stunning custom portraits that capture a moment in time to grand abstract pieces designed for modern luxury spaces, our mission is to deliver art that breathes life into your environment.</p>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Upgrade Your Home with Expert Painters</h1>
+            <p>From stunning interior makeovers and exterior protection to premium custom wall murals. Professional painting services at unbeatable prices.</p>
+            <div style="display: flex; gap: 15px;">
+                <div style="display: flex; align-items: center; gap: 10px; color: var(--secondary);">
+                    <i class="fa-solid fa-star" style="color: #F59E0B;"></i>
+                    <strong>4.9/5</strong> (2k+ Happy Customers)
+                </div>
             </div>
         </div>
-    </section>
-
-    <section id="services">
-        <h2 class="section-title gs-reveal">Our <span>Expertise</span></h2>
-        <div class="services-grid">
-            <div class="glass-card gs-reveal-up">
-                <i class="fa-solid fa-user-pen service-icon"></i>
-                <h3>Custom Portraits</h3>
-                <p>Lifelike, hand-painted portraits capturing the true essence and emotion of your loved ones.</p>
-            </div>
-            <div class="glass-card gs-reveal-up" style="transition-delay: 0.1s;">
-                <i class="fa-solid fa-palette service-icon"></i>
-                <h3>Abstract Art</h3>
-                <p>Modern, textured abstract canvases designed to be the centerpiece of luxury interiors.</p>
-            </div>
-            <div class="glass-card gs-reveal-up" style="transition-delay: 0.2s;">
-                <i class="fa-solid fa-gift service-icon"></i>
-                <h3>Gift Paintings</h3>
-                <p>Personalized art pieces perfect for weddings, anniversaries, and unforgettable gifts.</p>
-            </div>
-            <div class="glass-card gs-reveal-up" style="transition-delay: 0.3s;">
-                <i class="fa-solid fa-wand-magic-sparkles service-icon"></i>
-                <h3>Digital to Hand-Painted</h3>
-                <p>Transform your favorite digital photos into premium, textured canvas masterpieces.</p>
-            </div>
+        
+        <div class="hero-form">
+            <h3>Book a Free Site Visit</h3>
+            <form>
+                <div class="input-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="tel" placeholder="Mobile Number" required>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Pincode / Location" required>
+                </div>
+                <button type="submit" class="btn">Book Now</button>
+            </form>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 15px; text-align: center;">
+                <i class="fa-solid fa-shield-halved"></i> 100% Safe & Secure
+            </p>
         </div>
     </section>
 
-    <section id="gallery">
-        <h2 class="section-title gs-reveal">Curated <span>Gallery</span></h2>
-        <div class="gallery-grid">
-            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint1.webp')">
-                <img src="image/paint1.webp" alt="Art 1">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint2.webp')">
-                <img src="image/paint2.webp" alt="Art 2">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint3.webp')">
-                <img src="image/paint3.webp" alt="Art 3">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint4.webp')">
-                <img src="image/paint4.webp" alt="Art 4">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint5.webp')">
-                <img src="image/paint5.webp" alt="Art 5">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint6.webp')">
-                <img src="image/paint6.webp" alt="Art 6">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint7.webp')">
-                <img src="image/paint7.webp" alt="Art 7">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint8.webp')">
-                <img src="image/paint8.webp" alt="Art 8">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
-            </div>
-            <div class="gallery-item gs-reveal-up" onclick="openLightbox('image/paint9.webp')">
-                <img src="image/paint9.webp" alt="Art 9">
-                <div class="gallery-overlay"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+    <div class="features-ribbon">
+        <div class="feature-item">
+            <i class="fa-solid fa-user-shield"></i>
+            <div>
+                <h4>Verified Painters</h4>
+                <p>Professionally trained staff</p>
             </div>
         </div>
-    </section>
-
-    <div id="lightbox" onclick="closeLightbox()">
-        <i class="fa-solid fa-xmark" id="lightbox-close"></i>
-        <img id="lightbox-img" src="" alt="Full Art">
+        <div class="feature-item">
+            <i class="fa-solid fa-droplet-slash"></i>
+            <div>
+                <h4>Anti-Dust Process</h4>
+                <p>Clean and hassle-free</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <i class="fa-solid fa-clipboard-check"></i>
+            <div>
+                <h4>1-Year Warranty</h4>
+                <p>Guaranteed peace of mind</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <i class="fa-solid fa-calculator"></i>
+            <div>
+                <h4>Laser Measurement</h4>
+                <p>100% accurate quotes</p>
+            </div>
+        </div>
     </div>
 
-    <section id="process">
-        <h2 class="section-title gs-reveal">How It <span>Works</span></h2>
-        <div class="timeline">
-            <div class="timeline-item gs-reveal-up">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content glass-card">
-                    <h3>1. Upload & Consult</h3>
-                    <p>Share your vision, photo, or concept. We discuss the mood, size, and specific requirements for your custom piece.</p>
+    <section id="services" class="section">
+        <h2 class="section-title">Our Painting Services</h2>
+        <p class="section-subtitle">Comprehensive solutions for your home and commercial spaces</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="image/paint5.webp" alt="Interior Painting">
+                </div>
+                <div class="service-content">
+                    <h3>Interior Painting</h3>
+                    <p>Refresh your living spaces with premium washable paints, accurate finishes, and safe, odor-free colors.</p>
+                    <a href="#" class="service-link">Explore Interiors <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="timeline-item gs-reveal-up">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content glass-card">
-                    <h3>2. The Creation</h3>
-                    <p>The artist begins the detailed painting process, using premium quality canvases and high-grade professional paints.</p>
+            
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="image/paint7.webp" alt="Exterior Painting">
+                </div>
+                <div class="service-content">
+                    <h3>Exterior Painting</h3>
+                    <p>Weather-proof your home with durable exterior textures and waterproofing coats that last for years.</p>
+                    <a href="#" class="service-link">Explore Exteriors <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
-            <div class="timeline-item gs-reveal-up">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content glass-card">
-                    <h3>3. Final Polish & Delivery</h3>
-                    <p>After your approval of the final digital preview, the artwork is varnished, securely packaged, and shipped to your doorstep.</p>
+
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="image/paint3.webp" alt="Texture & Murals">
+                </div>
+                <div class="service-content">
+                    <h3>Textures & Wall Murals</h3>
+                    <p>Elevate your accent walls with custom textures, stencils, or premium hand-painted murals.</p>
+                    <a href="#" class="service-link">View Textures <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-img">
+                    <img src="image/paint8.webp" alt="Wood & Metal">
+                </div>
+                <div class="service-content">
+                    <h3>Wood & Metal Polish</h3>
+                    <p>Restore the shine of your doors, windows, and grills with high-quality PU polish and enamels.</p>
+                    <a href="#" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="pricing">
-        <h2 class="section-title gs-reveal">Investment in <span>Art</span></h2>
-        <div class="pricing-grid">
-            <div class="glass-card gs-reveal-up">
-                <h3>Standard Portrait</h3>
-                <div class="price">₹4,999</div>
-                <ul class="pricing-features">
-                    <li><i class="fa-solid fa-check"></i> A4 / 8x12 inches Size</li>
-                    <li><i class="fa-solid fa-check"></i> Single Face Portrait</li>
-                    <li><i class="fa-solid fa-check"></i> Standard Frame Included</li>
-                    <li><i class="fa-solid fa-check"></i> 7-10 Days Delivery</li>
-                </ul>
-                <a href="#contact" class="btn">Choose Plan</a>
+    <section id="process" class="trust-section">
+        <h2 class="section-title">How PaintByMuin Works</h2>
+        <p>A seamless, transparent, and professional experience from start to finish.</p>
+        
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-icon"><i class="fa-solid fa-house-circle-check"></i></div>
+                <h4>1. Free Site Visit</h4>
+                <p>Our expert visits your home, inspects the walls, and takes accurate laser measurements.</p>
             </div>
-            <div class="glass-card premium gs-reveal-up">
-                <h3>Premium Canvas</h3>
-                <div class="price">₹12,999</div>
-                <ul class="pricing-features">
-                    <li><i class="fa-solid fa-check"></i> A2 / 16x24 inches Size</li>
-                    <li><i class="fa-solid fa-check"></i> Couple or Family Portrait</li>
-                    <li><i class="fa-solid fa-check"></i> Premium Gallery Wrap</li>
-                    <li><i class="fa-solid fa-check"></i> VIP Shipping & Packaging</li>
-                </ul>
-                <a href="#contact" class="btn btn-solid">Choose Premium</a>
+            <div class="step">
+                <div class="step-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
+                <h4>2. Transparent Quote</h4>
+                <p>Get a detailed, itemized estimate with zero hidden charges. You choose the paint brand.</p>
             </div>
-            <div class="glass-card gs-reveal-up">
-                <h3>Custom Abstract</h3>
-                <div class="price">Custom</div>
-                <ul class="pricing-features">
-                    <li><i class="fa-solid fa-check"></i> Any Custom Dimensions</li>
-                    <li><i class="fa-solid fa-check"></i> Color Palette Matching</li>
-                    <li><i class="fa-solid fa-check"></i> Interior Design Consultation</li>
-                    <li><i class="fa-solid fa-check"></i> Authenticity Certificate</li>
-                </ul>
-                <a href="#contact" class="btn">Get a Quote</a>
+            <div class="step">
+                <div class="step-icon"><i class="fa-solid fa-paint-roller"></i></div>
+                <h4>3. Flawless Execution</h4>
+                <p>A dedicated project manager oversees masking, surface prep, and painting.</p>
+            </div>
+            <div class="step">
+                <div class="step-icon"><i class="fa-solid fa-face-smile"></i></div>
+                <h4>4. Site Cleanup</h4>
+                <p>We leave your house perfectly clean, beautifully painted, and ready to enjoy.</p>
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <h2 class="section-title gs-reveal">Start Your <span>Masterpiece</span></h2>
-        <div class="contact-container glass-card gs-reveal-up">
-            <form class="contact-form">
-                <input type="text" placeholder="Your Name" required>
-                <input type="email" placeholder="Your Email" required>
-                <input type="tel" placeholder="Phone Number">
-                <textarea rows="5" placeholder="Tell us about your art requirements..." required></textarea>
-                <button type="button" class="btn btn-solid" style="width: 100%;">Submit Request</button>
-            </form>
+    <section id="projects" class="gallery-section section">
+        <h2 class="section-title">Our Premium Projects</h2>
+        <p class="section-subtitle">Take a look at the spaces we've transformed</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item"><img src="image/paint4.webp" alt="Project 1"></div>
+            <div class="gallery-item"><img src="image/paint6.webp" alt="Project 2"></div>
+            <div class="gallery-item"><img src="image/paint9.webp" alt="Project 3"></div>
+            <div class="gallery-item"><img src="image/paint2.webp" alt="Project 4"></div>
+            <div class="gallery-item"><img src="image/paint1.webp" alt="Project 5"></div>
+            <div class="gallery-item">
+                <img src="image/CO.png" alt="Expert Painter" style="object-position: top;">
+            </div>
         </div>
     </section>
 
     <footer>
-        <h2 class="logo">PaintByMuin.</h2>
-        <p style="color: var(--text-muted); margin: 20px 0;">Elevating spaces with handcrafted luxury art.</p>
-        <div class="social-icons">
-            <a href="#"><i class="fa-brands fa-instagram"></i></a>
-            <a href="#"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#"><i class="fa-brands fa-pinterest"></i></a>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <a href="#" class="footer-logo">PaintBy<span>Muin</span></a>
+                <p>Your trusted partner for home painting, waterproofing, and custom wall textures. Bringing colors to life with professional expertise.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Our Services</h4>
+                <ul>
+                    <li><a href="#">Interior Painting</a></li>
+                    <li><a href="#">Exterior Painting</a></li>
+                    <li><a href="#">Waterproofing</a></li>
+                    <li><a href="#">Wood Polish</a></li>
+                    <li><a href="#">Custom Wall Art</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Paint Cost Calculator</a></li>
+                    <li><a href="#">Color Catalog</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact Info</h4>
+                <ul style="color: #94a3b8;">
+                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-location-dot"></i> Mumbai, Maharashtra, India</li>
+                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
+                    <li><a href="mailto:info@paintbymuin.in">info@paintbymuin.in</a></li>
+                </ul>
+            </div>
         </div>
-        <p style="color: var(--text-muted); margin-top: 20px; font-size: 0.9rem;">&copy; 2026 PaintByMuin. All rights reserved.</p>
+        
+        <div class="footer-bottom">
+            <div>&copy; 2026 PaintByMuin. All Rights Reserved.</div>
+            <div class="developer-credit">This website developed by <a href="https://knoxit.in" target="_blank">Knoxit.in</a></div>
+        </div>
     </footer>
 
-    <a href="https://wa.me/910000000000" class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+    <a href="https://wa.me/910000000000" class="whatsapp-btn" target="_blank">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    
-    <script>
-        // Preloader Logic
-        window.addEventListener("load", () => {
-            const preloader = document.getElementById("preloader");
-            setTimeout(() => {
-                preloader.style.opacity = "0";
-                setTimeout(() => {
-                    preloader.style.display = "none";
-                }, 1000);
-            }, 800);
-        });
-
-        // Custom Cursor Logic
-        const cursorDot = document.querySelector(".cursor-dot");
-        const cursorOutline = document.querySelector(".cursor-outline");
-
-        window.addEventListener("mousemove", (e) => {
-            const posX = e.clientX;
-            const posY = e.clientY;
-
-            cursorDot.style.left = `${posX}px`;
-            cursorDot.style.top = `${posY}px`;
-
-            // Adding slight delay for outline (smooth effect)
-            cursorOutline.animate({
-                left: `${posX}px`,
-                top: `${posY}px`
-            }, { duration: 500, fill: "forwards" });
-        });
-
-        // Interactive Canvas Background (Subtle floating paint particles)
-        const canvas = document.getElementById('hero-canvas');
-        const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        let particlesArray = [];
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.color = Math.random() > 0.5 ? '#D4AF37' : '#4B0082';
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.size > 0.2) this.size -= 0.005;
-            }
-            draw() {
-                ctx.fillStyle = this.color;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-        function handleParticles() {
-            for (let i = 0; i < particlesArray.length; i++) {
-                particlesArray[i].update();
-                particlesArray[i].draw();
-                if (particlesArray[i].size <= 0.3) {
-                    particlesArray.splice(i, 1);
-                    i--;
-                }
-            }
-        }
-        function animateCanvas() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            if(particlesArray.length < 50) {
-                particlesArray.push(new Particle());
-            }
-            handleParticles();
-            requestAnimationFrame(animateCanvas);
-        }
-        animateCanvas();
-
-        // Window resize canvas fix
-        window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        });
-
-        // GSAP Scroll Animations
-        gsap.registerPlugin(ScrollTrigger);
-
-        // General Fade Up Reveal
-        gsap.utils.toArray('.gs-reveal-up').forEach(function(elem) {
-            gsap.fromTo(elem, 
-                { y: 50, opacity: 0 }, 
-                { y: 0, opacity: 1, duration: 1, ease: "power3.out",
-                  scrollTrigger: { trigger: elem, start: "top 85%" }
-                }
-            );
-        });
-
-        // Left Reveal
-        gsap.utils.toArray('.gs-reveal-left').forEach(function(elem) {
-            gsap.fromTo(elem, 
-                { x: -50, opacity: 0 }, 
-                { x: 0, opacity: 1, duration: 1, ease: "power3.out",
-                  scrollTrigger: { trigger: elem, start: "top 85%" }
-                }
-            );
-        });
-
-        // Right Reveal
-        gsap.utils.toArray('.gs-reveal-right').forEach(function(elem) {
-            gsap.fromTo(elem, 
-                { x: 50, opacity: 0 }, 
-                { x: 0, opacity: 1, duration: 1, ease: "power3.out",
-                  scrollTrigger: { trigger: elem, start: "top 85%" }
-                }
-            );
-        });
-
-        // Lightbox Functions
-        function openLightbox(imageSrc) {
-            document.getElementById('lightbox-img').src = imageSrc;
-            document.getElementById('lightbox').style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Stop background scrolling
-        }
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-            document.body.style.overflow = 'auto'; // Restore background scrolling
-        }
-    </script>
 </body>
 </html>
