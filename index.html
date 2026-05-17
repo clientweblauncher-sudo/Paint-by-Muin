@@ -45,7 +45,7 @@
         
         /* Premium Background Art Texture */
         .bg-art-pattern {
-            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.15'/%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
         }
 
         /* Premium Scrollbar */
@@ -73,9 +73,9 @@
         }
     </style>
 </head>
-<body class="antialiased selection:bg-luxury-gold selection:text-white">
+<body class="antialiased selection:bg-luxury-gold selection:text-white relative">
 
-    <div class="fixed inset-0 pointer-events-none z-[-1] bg-art-pattern opacity-30 mix-blend-multiply"></div>
+    <div class="fixed inset-0 pointer-events-none z-[-1] bg-art-pattern opacity-60 mix-blend-multiply"></div>
 
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -93,48 +93,48 @@
         </div>
     </nav>
 
-    <section class="relative h-screen flex items-center justify-center overflow-hidden bg-luxury-charcoal">
-        <div class="absolute inset-0 z-0 bg-luxury-charcoal">
-            <video class="w-full h-full object-cover opacity-40 mix-blend-overlay" autoplay loop muted playsinline>
+    <section class="relative h-screen flex items-center justify-center overflow-hidden bg-black">
+        <div class="absolute inset-0 z-0 bg-black">
+            <video class="w-full h-full object-cover opacity-70" autoplay loop muted playsinline>
                 <source src="image/bannervideo.mp4" type="video/mp4">
             </video>
         </div>
-        <div class="absolute inset-0 bg-gradient-to-b from-luxury-charcoal/80 via-luxury-charcoal/50 to-luxury-charcoal z-0 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-transparent to-black/60 z-0 pointer-events-none"></div>
         
-        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20 reveal active">
-            <span class="text-luxury-gold tracking-[0.2em] uppercase text-sm font-semibold mb-6 block">25 Years of Trusted Craftsmanship</span>
-            <h1 class="text-5xl md:text-7xl font-serif text-white font-bold leading-tight mb-8">
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20 reveal active drop-shadow-2xl">
+            <span class="text-luxury-gold tracking-[0.2em] uppercase text-sm font-bold mb-6 block drop-shadow-md">25 Years of Trusted Craftsmanship</span>
+            <h1 class="text-5xl md:text-7xl font-serif text-white font-bold leading-tight mb-8 drop-shadow-lg">
                 Turn Your Walls <br class="hidden md:block"/> Into Art
             </h1>
-            <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">
+            <p class="text-gray-200 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-medium drop-shadow-md">
                 Premium painting and luxury finishes for elegant spaces. Serving Agra, Noida, and surrounding regions with unparalleled detailing.
             </p>
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="#contact" class="bg-luxury-gold hover:bg-luxury-softGold text-luxury-charcoal px-8 py-4 font-semibold transition-all">
                     Book a Consultation
                 </a>
-                <a href="#projects" class="border border-white/30 text-white hover:bg-white/10 px-8 py-4 transition-all">
+                <a href="#projects" class="border border-white/50 text-white bg-black/30 hover:bg-white/20 backdrop-blur-sm px-8 py-4 transition-all font-medium">
                     View Signature Projects
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="about" class="py-24 px-4 sm:px-8 relative">
-        <div class="absolute inset-0 bg-luxury-warmWhite opacity-90 z-[-1]"></div>
+    <section id="about" class="py-24 px-4 sm:px-8 relative z-10">
+        <div class="absolute inset-0 bg-luxury-warmWhite/85 z-[-1] backdrop-blur-[2px]"></div>
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div class="relative aspect-[4/5] w-full max-w-md mx-auto reveal">
-                <div class="absolute inset-0 bg-luxury-gold translate-x-4 translate-y-4 z-0"></div>
-                <img src="image/CO.png" alt="Muin - Founder" class="object-cover w-full h-full z-10 relative transition-all duration-700 shadow-2xl">
+                <div class="absolute inset-0 bg-luxury-gold translate-x-4 translate-y-4 z-0 rounded-sm"></div>
+                <img src="image/CO.png" alt="Muin - Founder" class="object-cover w-full h-full z-10 relative transition-all duration-700 shadow-2xl rounded-sm">
             </div>
             <div class="reveal">
                 <h2 class="text-4xl md:text-5xl font-serif text-luxury-charcoal mb-6">
                     25 Years of <span class="text-luxury-gold italic">Craftsmanship & Trust</span>
                 </h2>
-                <div class="space-y-6 text-gray-600 text-lg leading-relaxed font-light">
+                <div class="space-y-6 text-gray-700 text-lg leading-relaxed font-normal">
                     <p>Muin is more than just a painter; he is a craftsman who treats every wall as a canvas. His journey began with a passion for transformation, and today, his signature work can be seen across the most iconic landmarks of Agra.</p>
                     <p>From the intricate demands of high-end polishing to large-scale residential and commercial painting, Muin’s expertise spans the entire spectrum of the craft.</p>
-                    <p class="font-medium text-luxury-charcoal border-l-2 border-luxury-gold pl-4 italic">
+                    <p class="font-medium text-luxury-charcoal border-l-4 border-luxury-gold pl-4 italic bg-white/50 py-2 pr-2 rounded-r-lg">
                         "Painting is not just a service—it is a 25-year legacy of bringing color, protection, and unparalleled beauty to the places people call home."
                     </p>
                 </div>
@@ -142,31 +142,31 @@
         </div>
     </section>
 
-    <section id="services" class="py-24 bg-luxury-charcoal text-white px-4">
+    <section id="services" class="py-24 bg-luxury-charcoal/90 text-white px-4 relative z-10 backdrop-blur-[2px]">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-4xl md:text-5xl font-serif mb-4 text-white">Elite Craftsmanship Services</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto font-light">Delivering perfection across every spectrum of interior and exterior transformation.</p>
+                <p class="text-gray-300 max-w-2xl mx-auto font-light">Delivering perfection across every spectrum of interior and exterior transformation.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-luxury-matte p-8 border border-white/5 hover:border-luxury-gold/50 transition-colors reveal shadow-lg">
+                <div class="bg-luxury-matte/90 p-8 border border-white/10 hover:border-luxury-gold/50 transition-colors reveal shadow-xl rounded-sm">
                     <h3 class="text-xl font-serif text-luxury-gold mb-3">Luxury Wall Finishes</h3>
-                    <p class="text-gray-400 font-light text-sm">Premium texture painting, decorative finishes, and flawless wall putty applications that redefine elegance.</p>
+                    <p class="text-gray-400 font-light text-sm leading-relaxed">Premium texture painting, decorative finishes, and flawless wall putty applications that redefine elegance.</p>
                 </div>
-                <div class="bg-luxury-matte p-8 border border-white/5 hover:border-luxury-gold/50 transition-colors reveal shadow-lg">
+                <div class="bg-luxury-matte/90 p-8 border border-white/10 hover:border-luxury-gold/50 transition-colors reveal shadow-xl rounded-sm">
                     <h3 class="text-xl font-serif text-luxury-gold mb-3">Wood & PU Polish</h3>
-                    <p class="text-gray-400 font-light text-sm">High-end wood treatments, melamine, and PU polishing that protect and highlight natural wood grains.</p>
+                    <p class="text-gray-400 font-light text-sm leading-relaxed">High-end wood treatments, melamine, and PU polishing that protect and highlight natural wood grains.</p>
                 </div>
-                <div class="bg-luxury-matte p-8 border border-white/5 hover:border-luxury-gold/50 transition-colors reveal shadow-lg">
+                <div class="bg-luxury-matte/90 p-8 border border-white/10 hover:border-luxury-gold/50 transition-colors reveal shadow-xl rounded-sm">
                     <h3 class="text-xl font-serif text-luxury-gold mb-3">Weatherproof Exteriors</h3>
-                    <p class="text-gray-400 font-light text-sm">Advanced exterior painting and complete waterproofing solutions designed to withstand the harsh Indian climate.</p>
+                    <p class="text-gray-400 font-light text-sm leading-relaxed">Advanced exterior painting and complete waterproofing solutions designed to withstand the harsh Indian climate.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-24 bg-luxury-matte px-4 border-t border-white/10">
+    <section id="projects" class="py-24 bg-[#232527]/90 px-4 border-t border-white/10 relative z-10 backdrop-blur-[2px]">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 reveal">
                 <h2 class="text-4xl md:text-5xl font-serif mb-4 text-white">Signature Transformations</h2>
@@ -174,43 +174,43 @@
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal">
+                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal shadow-lg">
                     <img src="image/paint2.webp" alt="Project 1" class="max-w-full max-h-full object-contain cursor-pointer transition-transform duration-500 group-hover:scale-105 lightbox-trigger">
                 </div>
-                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal">
+                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal shadow-lg">
                     <img src="image/paint3.webp" alt="Project 2" class="max-w-full max-h-full object-contain cursor-pointer transition-transform duration-500 group-hover:scale-105 lightbox-trigger">
                 </div>
-                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal">
+                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal shadow-lg">
                     <img src="image/paint4.webp" alt="Project 3" class="max-w-full max-h-full object-contain cursor-pointer transition-transform duration-500 group-hover:scale-105 lightbox-trigger">
                 </div>
-                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal">
+                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal shadow-lg">
                     <img src="image/paint5.webp" alt="Project 4" class="max-w-full max-h-full object-contain cursor-pointer transition-transform duration-500 group-hover:scale-105 lightbox-trigger">
                 </div>
-                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal">
+                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal shadow-lg">
                     <img src="image/paint6.webp" alt="Project 5" class="max-w-full max-h-full object-contain cursor-pointer transition-transform duration-500 group-hover:scale-105 lightbox-trigger">
                 </div>
-                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal">
+                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal shadow-lg">
                     <img src="image/paint7.webp" alt="Project 6" class="max-w-full max-h-full object-contain cursor-pointer transition-transform duration-500 group-hover:scale-105 lightbox-trigger">
                 </div>
-                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal">
+                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal shadow-lg">
                     <img src="image/paint8.webp" alt="Project 7" class="max-w-full max-h-full object-contain cursor-pointer transition-transform duration-500 group-hover:scale-105 lightbox-trigger">
                 </div>
-                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal">
+                <div class="relative group bg-luxury-charcoal rounded-xl border border-white/5 p-2 flex items-center justify-center h-64 reveal shadow-lg">
                     <img src="image/paint9.webp" alt="Project 8" class="max-w-full max-h-full object-contain cursor-pointer transition-transform duration-500 group-hover:scale-105 lightbox-trigger">
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="py-24 relative px-4">
-        <div class="absolute inset-0 bg-luxury-warmWhite opacity-95 z-[-1]"></div>
+    <section id="contact" class="py-24 relative px-4 z-10">
+        <div class="absolute inset-0 bg-luxury-warmWhite/85 z-[-1] backdrop-blur-[2px]"></div>
         <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
             <div class="reveal">
                 <h2 class="text-4xl font-serif text-luxury-charcoal mb-6">Request a Consultation</h2>
-                <p class="text-gray-600 mb-8 font-light">Ready to elevate your space? Contact us to discuss your vision, materials, and timeline. Serving Agra, Bharatpur, Hathras, Aligarh, and Noida.</p>
+                <p class="text-gray-700 mb-8 font-normal">Ready to elevate your space? Contact us to discuss your vision, materials, and timeline. Serving Agra, Bharatpur, Hathras, Aligarh, and Noida.</p>
                 
                 <div class="space-y-4 mt-8">
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center gap-5 hover:shadow-md transition-shadow">
+                    <div class="bg-white/90 p-5 rounded-xl shadow-sm border border-gray-200 flex items-center gap-5 hover:shadow-md transition-shadow">
                         <div class="w-12 h-12 bg-luxury-charcoal text-luxury-gold flex items-center justify-center rounded-full shrink-0">📞</div>
                         <div>
                             <p class="text-sm text-gray-500">Contact</p>
@@ -218,7 +218,7 @@
                         </div>
                     </div>
                     
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center gap-5 hover:shadow-md transition-shadow">
+                    <div class="bg-white/90 p-5 rounded-xl shadow-sm border border-gray-200 flex items-center gap-5 hover:shadow-md transition-shadow">
                         <div class="w-12 h-12 bg-luxury-charcoal text-luxury-gold flex items-center justify-center rounded-full shrink-0">✉️</div>
                         <div>
                             <p class="text-sm text-gray-500">Email Us</p>
@@ -226,7 +226,7 @@
                         </div>
                     </div>
                     
-                    <div class="bg-white p-5 rounded-xl shadow-sm border border-gray-100 flex items-center gap-5 hover:shadow-md transition-shadow">
+                    <div class="bg-white/90 p-5 rounded-xl shadow-sm border border-gray-200 flex items-center gap-5 hover:shadow-md transition-shadow">
                         <div class="w-12 h-12 bg-luxury-charcoal text-luxury-gold flex items-center justify-center rounded-full shrink-0">📍</div>
                         <div>
                             <p class="text-sm text-gray-500">Headquarters</p>
@@ -236,26 +236,26 @@
                 </div>
             </div>
 
-            <div class="bg-white p-8 rounded-2xl shadow-xl border border-gray-100 reveal">
+            <div class="bg-white/95 p-8 rounded-2xl shadow-2xl border border-gray-200 reveal backdrop-blur-sm">
                 <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
                     <input type="hidden" name="access_key" value="464ee84c-7f26-4b40-b6ba-72888b1fff57">
                     <input type="hidden" name="subject" value="New Luxury Consultation Request - Paint By Muin">
                     <input type="hidden" name="redirect" value="https://paintbymuin.co.in/">
 
                     <div>
-                        <label class="block text-sm text-gray-600 mb-2">Full Name</label>
-                        <input type="text" name="name" required class="w-full bg-transparent border-b border-gray-300 focus:border-luxury-gold outline-none py-2 transition-colors">
+                        <label class="block text-sm text-gray-600 mb-2 font-medium">Full Name</label>
+                        <input type="text" name="name" required class="w-full bg-transparent border-b-2 border-gray-300 focus:border-luxury-gold outline-none py-2 transition-colors">
                     </div>
                     <div>
-                        <label class="block text-sm text-gray-600 mb-2">Phone Number</label>
-                        <input type="tel" name="phone" required class="w-full bg-transparent border-b border-gray-300 focus:border-luxury-gold outline-none py-2 transition-colors">
+                        <label class="block text-sm text-gray-600 mb-2 font-medium">Phone Number</label>
+                        <input type="tel" name="phone" required class="w-full bg-transparent border-b-2 border-gray-300 focus:border-luxury-gold outline-none py-2 transition-colors">
                     </div>
                     <div>
-                        <label class="block text-sm text-gray-600 mb-2">Project Details</label>
-                        <textarea name="message" rows="4" required class="w-full bg-transparent border-b border-gray-300 focus:border-luxury-gold outline-none py-2 transition-colors resize-none"></textarea>
+                        <label class="block text-sm text-gray-600 mb-2 font-medium">Project Details</label>
+                        <textarea name="message" rows="4" required class="w-full bg-transparent border-b-2 border-gray-300 focus:border-luxury-gold outline-none py-2 transition-colors resize-none"></textarea>
                     </div>
 
-                    <button type="submit" class="w-full bg-luxury-charcoal hover:bg-black text-luxury-gold py-4 rounded-lg font-semibold uppercase tracking-wider transition-colors mt-4">
+                    <button type="submit" class="w-full bg-luxury-charcoal hover:bg-black text-luxury-gold py-4 rounded-lg font-bold uppercase tracking-wider transition-colors mt-4 shadow-lg">
                         Submit Request
                     </button>
                 </form>
@@ -263,14 +263,48 @@
         </div>
     </section>
 
-    <footer class="bg-luxury-charcoal text-gray-400 pt-16 pb-6 text-center relative z-10">
-        <div class="max-w-7xl mx-auto px-4 mb-10">
-            <h2 class="font-serif text-2xl text-white tracking-wider mb-4">PAINT BY <span class="text-luxury-gold">MUIN</span></h2>
-            <p class="font-light mb-6">Premium Painting For Elegant Spaces</p>
-            <p class="text-sm">&copy; 2024 Paint By Muin. All rights reserved. Crafted with excellence in Agra.</p>
+    <footer class="bg-luxury-charcoal/95 text-gray-400 pt-16 pb-6 relative z-10 border-t border-white/10 backdrop-blur-[2px]">
+        <div class="max-w-7xl mx-auto px-4 mb-10 grid grid-cols-1 md:grid-cols-3 gap-12">
+            
+            <div>
+                <h2 class="font-serif text-2xl text-white tracking-wider mb-4">PAINT BY <span class="text-luxury-gold">MUIN</span></h2>
+                <p class="font-light text-sm leading-relaxed text-gray-400">
+                    25 Years of Trusted Craftsmanship delivering premium interior painting, wood polish, and luxury finishes across Agra and surrounding regions. We turn your walls into art.
+                </p>
+            </div>
+
+            <div>
+                <h3 class="text-white font-serif text-lg mb-6 border-b border-white/10 pb-2 inline-block">Quick Links</h3>
+                <ul class="space-y-3 text-sm font-light">
+                    <li><a href="#about" class="hover:text-luxury-gold transition-colors block">About Us</a></li>
+                    <li><a href="#services" class="hover:text-luxury-gold transition-colors block">Elite Services</a></li>
+                    <li><a href="#projects" class="hover:text-luxury-gold transition-colors block">Signature Projects</a></li>
+                    <li><a href="#contact" class="hover:text-luxury-gold transition-colors block">Book Consultation</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-white font-serif text-lg mb-6 border-b border-white/10 pb-2 inline-block">Contact Info</h3>
+                <ul class="space-y-4 text-sm font-light">
+                    <li class="flex items-start gap-3">
+                        <span class="text-luxury-gold">📞</span>
+                        <span class="text-gray-300">+91 8449366130</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-luxury-gold">✉️</span>
+                        <span class="text-gray-300">mmcontractor092@gmail.com</span>
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-luxury-gold">📍</span>
+                        <span class="text-gray-300 leading-relaxed">Plot No 34, 35 Sheela Kunj,<br>Bodla, Agra, UP 282007</span>
+                    </li>
+                </ul>
+            </div>
+
         </div>
         
-        <div class="border-t border-white/10 pt-6 mt-4">
+        <div class="max-w-7xl mx-auto px-4 border-t border-white/10 pt-6 mt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="text-xs text-gray-500 tracking-wide">&copy; 2024 Paint By Muin. All rights reserved.</p>
             <p class="text-xs text-gray-500 tracking-wide">This website developed by <a href="https://www.knoxit.in" target="_blank" class="hover:text-luxury-gold transition-colors text-gray-300 font-medium">www.knoxit.in</a></p>
         </div>
     </footer>
