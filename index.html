@@ -1,635 +1,309 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PaintByMuin | Professional Home & Art Painting Services</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Paint By Muin | Luxury Painting & Wood Polish in Agra</title>
+    <meta name="description" content="Turn Your Walls Into Art. 25 Years of Trusted Craftsmanship delivering premium interior painting, wood polish, and luxury finishes.">
+    <meta name="keywords" content="best painter in Agra, luxury painting contractor Agra, interior painter, wood polish, texture painter">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config for Luxury Theme -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        luxury: {
+                            charcoal: '#1A1C1E',
+                            matte: '#2B2D2F',
+                            gold: '#D4AF37',
+                            softGold: '#E6C972',
+                            beige: '#F5F5F0',
+                            warmWhite: '#FAFAFA',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Animations & Scrollbar -->
     <style>
-        :root {
-            --primary: #F26422; /* Vibrant Orange for Action */
-            --secondary: #1E293B; /* Dark Blue/Slate for Trust */
-            --light-bg: #F8FAFC;
-            --white: #FFFFFF;
-            --text-dark: #334155;
-            --text-muted: #64748B;
-            --border-color: #E2E8F0;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
-
         body {
-            background-color: var(--white);
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        /* Top Bar */
-        .top-bar {
-            background-color: var(--secondary);
-            color: var(--white);
-            padding: 8px 50px;
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.85rem;
-        }
-        .top-bar-links a {
-            color: var(--white);
-            margin-left: 15px;
-        }
-
-        /* Navbar */
-        nav {
-            padding: 15px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--secondary);
-        }
-        .logo span {
-            color: var(--primary);
-        }
-        .nav-links {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
-        .nav-links a {
-            color: var(--secondary);
-            font-weight: 500;
-        }
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-        .btn {
-            background-color: var(--primary);
-            color: var(--white);
-            padding: 10px 24px;
-            border-radius: 6px;
-            font-weight: 600;
-            border: none;
-            cursor: pointer;
-        }
-        .btn:hover {
-            background-color: #d9561b;
-            color: var(--white);
-        }
-
-        /* Hero Section */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 60px 50px;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
-            min-height: 80vh;
-        }
-        .hero-content {
-            max-width: 50%;
-        }
-        .hero h1 {
-            font-size: 3.5rem;
-            color: var(--secondary);
-            line-height: 1.2;
-            margin-bottom: 20px;
-        }
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-        .hero-form {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            width: 400px;
-        }
-        .hero-form h3 {
-            margin-bottom: 20px;
-            color: var(--secondary);
-        }
-        .input-group {
-            margin-bottom: 15px;
-        }
-        .input-group input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            font-size: 1rem;
-        }
-        .input-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-        .hero-form .btn {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
-        }
-
-        /* Features Ribbon */
-        .features-ribbon {
-            display: flex;
-            justify-content: space-around;
-            padding: 30px 50px;
-            background: var(--white);
-            box-shadow: 0 -5px 20px rgba(0,0,0,0.02);
-            border-bottom: 1px solid var(--border-color);
-        }
-        .feature-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .feature-item i {
-            font-size: 2rem;
-            color: var(--primary);
-        }
-        .feature-item h4 {
-            color: var(--secondary);
-            font-size: 1.1rem;
-        }
-        .feature-item p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Services Section */
-        .section {
-            padding: 80px 50px;
-            text-align: center;
-            background-color: var(--light-bg);
-        }
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--secondary);
-            margin-bottom: 15px;
-        }
-        .section-subtitle {
-            color: var(--text-muted);
-            margin-bottom: 50px;
-            font-size: 1.1rem;
-        }
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .service-card {
-            background: var(--white);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            text-align: left;
-        }
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-        }
-        .service-img {
-            height: 200px;
-            background-color: #ddd;
-            overflow: hidden;
-        }
-        .service-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .service-content {
-            padding: 25px;
-        }
-        .service-content h3 {
-            color: var(--secondary);
-            margin-bottom: 10px;
-        }
-        .service-content p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            margin-bottom: 15px;
-        }
-        .service-link {
-            color: var(--primary);
-            font-weight: 600;
-        }
-
-        /* Projects / Gallery */
-        .gallery-section {
-            padding: 80px 50px;
-            background: var(--white);
-        }
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            height: 250px;
-        }
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Trust Section (Why Us) */
-        .trust-section {
-            padding: 80px 50px;
-            background: var(--secondary);
-            color: var(--white);
-            text-align: center;
-        }
-        .trust-section .section-title {
-            color: var(--white);
-        }
-        .process-steps {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 50px;
-            flex-wrap: wrap;
-        }
-        .step {
-            max-width: 250px;
-        }
-        .step-icon {
-            width: 80px;
-            height: 80px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 20px;
-        }
-        .step h4 {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-        }
-        .step p {
-            font-size: 0.9rem;
-            color: #cbd5e1;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #0f172a;
-            color: #94a3b8;
-            padding: 60px 50px 20px;
-        }
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-            border-bottom: 1px solid #1e293b;
-            padding-bottom: 40px;
-        }
-        .footer-logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--white);
-            margin-bottom: 15px;
-            display: inline-block;
-        }
-        .footer-logo span {
-            color: var(--primary);
-        }
-        .footer-col h4 {
-            color: var(--white);
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-        .footer-col ul {
-            list-style: none;
-        }
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-        .footer-col ul li a {
-            color: #94a3b8;
-        }
-        .footer-col ul li a:hover {
-            color: var(--primary);
-        }
-        .footer-bottom {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
+            background-color: #FAFAFA;
+            color: #1A1C1E;
+            overflow-x: hidden;
         }
         
-        /* THE CLICKABLE DEV LINK AS REQUESTED */
-        .developer-credit {
-            font-weight: 500;
+        /* Premium Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1A1C1E; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }
+
+        /* Scroll Reveal Animation Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
         }
-        .developer-credit a {
-            color: var(--primary);
-            font-weight: 700;
-        }
-        .developer-credit a:hover {
-            color: var(--white);
-            text-decoration: underline;
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* WhatsApp Button */
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 35px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            z-index: 1000;
-            transition: transform 0.3s;
-        }
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-            color: white;
-        }
-
-        @media (max-width: 900px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding: 40px 20px;
-            }
-            .hero-content {
-                max-width: 100%;
-                margin-bottom: 40px;
-            }
-            .hero h1 { font-size: 2.5rem; }
-            .features-ribbon { flex-direction: column; gap: 20px; }
-            nav { padding: 15px 20px; }
-            .nav-links { display: none; /* Add hamburger menu logic for mobile later */ }
-            .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+        /* Glassmorphism Navbar */
+        .glass-nav {
+            background: rgba(26, 28, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
-<body>
+<body class="antialiased selection:bg-luxury-gold selection:text-white">
 
-    <div class="top-bar">
-        <div><i class="fa-solid fa-phone"></i> +91 98765 43210</div>
-        <div class="top-bar-links">
-            <a href="#">Track Project</a>
-            <a href="#">Become a Partner</a>
-        </div>
-    </div>
-
-    <nav>
-        <a href="#" class="logo">PaintBy<span>Muin</span></a>
-        <div class="nav-links">
-            <a href="#services">Services</a>
-            <a href="#projects">Recent Projects</a>
-            <a href="#process">How it Works</a>
-            <a href="#contact" class="btn">Get a Quote</a>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="font-serif text-2xl text-white tracking-wider">PAINT BY <span class="text-luxury-gold">MUIN</span></a>
+                </div>
+                <div class="hidden md:flex space-x-8 text-sm font-medium tracking-wide">
+                    <a href="#about" class="text-gray-300 hover:text-luxury-gold transition-colors">ABOUT</a>
+                    <a href="#services" class="text-gray-300 hover:text-luxury-gold transition-colors">SERVICES</a>
+                    <a href="#projects" class="text-gray-300 hover:text-luxury-gold transition-colors">PROJECTS</a>
+                    <a href="#contact" class="text-luxury-gold border border-luxury-gold px-4 py-2 hover:bg-luxury-gold hover:text-luxury-charcoal transition-all">CONSULTATION</a>
+                </div>
+            </div>
         </div>
     </nav>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Upgrade Your Home with Expert Painters</h1>
-            <p>From stunning interior makeovers and exterior protection to premium custom wall murals. Professional painting services at unbeatable prices.</p>
-            <div style="display: flex; gap: 15px;">
-                <div style="display: flex; align-items: center; gap: 10px; color: var(--secondary);">
-                    <i class="fa-solid fa-star" style="color: #F59E0B;"></i>
-                    <strong>4.9/5</strong> (2k+ Happy Customers)
-                </div>
-            </div>
-        </div>
+    <!-- Hero Section -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden bg-luxury-charcoal">
+        <div class="absolute inset-0 z-0 bg-cover bg-center opacity-40 mix-blend-overlay" style="background-image: url('paint1.webp');"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-luxury-charcoal/80 via-luxury-charcoal/50 to-luxury-charcoal z-0"></div>
         
-        <div class="hero-form">
-            <h3>Book a Free Site Visit</h3>
-            <form>
-                <div class="input-group">
-                    <input type="text" placeholder="Your Name" required>
-                </div>
-                <div class="input-group">
-                    <input type="tel" placeholder="Mobile Number" required>
-                </div>
-                <div class="input-group">
-                    <input type="text" placeholder="Pincode / Location" required>
-                </div>
-                <button type="submit" class="btn">Book Now</button>
-            </form>
-            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 15px; text-align: center;">
-                <i class="fa-solid fa-shield-halved"></i> 100% Safe & Secure
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto mt-20 reveal active">
+            <span class="text-luxury-gold tracking-[0.2em] uppercase text-sm font-semibold mb-6 block">25 Years of Trusted Craftsmanship</span>
+            <h1 class="text-5xl md:text-7xl font-serif text-white font-bold leading-tight mb-8">
+                Turn Your Walls <br class="hidden md:block"/> Into Art
+            </h1>
+            <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto font-light">
+                Premium painting and luxury finishes for elegant spaces. Serving Agra, Noida, and surrounding regions with unparalleled detailing.
             </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#contact" class="bg-luxury-gold hover:bg-luxury-softGold text-luxury-charcoal px-8 py-4 font-semibold transition-all">
+                    Book a Consultation
+                </a>
+                <a href="#projects" class="border border-white/30 text-white hover:bg-white/10 px-8 py-4 transition-all">
+                    View Signature Projects
+                </a>
+            </div>
         </div>
     </section>
 
-    <div class="features-ribbon">
-        <div class="feature-item">
-            <i class="fa-solid fa-user-shield"></i>
-            <div>
-                <h4>Verified Painters</h4>
-                <p>Professionally trained staff</p>
+    <!-- Founder Spotlight (About) -->
+    <section id="about" class="py-24 bg-luxury-warmWhite px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="relative aspect-[4/5] w-full max-w-md mx-auto reveal">
+                <div class="absolute inset-0 bg-luxury-gold translate-x-4 translate-y-4 z-0"></div>
+                <img src="CO.png" alt="Muin - Founder" class="object-cover w-full h-full z-10 relative grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
+            </div>
+            <div class="reveal">
+                <h2 class="text-4xl md:text-5xl font-serif text-luxury-charcoal mb-6">
+                    25 Years of <span class="text-luxury-gold italic">Craftsmanship & Trust</span>
+                </h2>
+                <div class="space-y-6 text-gray-600 text-lg leading-relaxed font-light">
+                    <p>Muin is more than just a painter; he is a craftsman who treats every wall as a canvas. His journey began with a passion for transformation, and today, his signature work can be seen across the most iconic landmarks of Agra.</p>
+                    <p>From the intricate demands of high-end polishing to large-scale residential and commercial painting, Muin’s expertise spans the entire spectrum of the craft.</p>
+                    <p class="font-medium text-luxury-charcoal border-l-2 border-luxury-gold pl-4 italic">
+                        "Painting is not just a service—it is a 25-year legacy of bringing color, protection, and unparalleled beauty to the places people call home."
+                    </p>
+                </div>
             </div>
         </div>
-        <div class="feature-item">
-            <i class="fa-solid fa-droplet-slash"></i>
-            <div>
-                <h4>Anti-Dust Process</h4>
-                <p>Clean and hassle-free</p>
-            </div>
-        </div>
-        <div class="feature-item">
-            <i class="fa-solid fa-clipboard-check"></i>
-            <div>
-                <h4>1-Year Warranty</h4>
-                <p>Guaranteed peace of mind</p>
-            </div>
-        </div>
-        <div class="feature-item">
-            <i class="fa-solid fa-calculator"></i>
-            <div>
-                <h4>Laser Measurement</h4>
-                <p>100% accurate quotes</p>
-            </div>
-        </div>
-    </div>
+    </section>
 
-    <section id="services" class="section">
-        <h2 class="section-title">Our Painting Services</h2>
-        <p class="section-subtitle">Comprehensive solutions for your home and commercial spaces</p>
-        
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-img">
-                    <img src="image/paint5.webp" alt="Interior Painting">
-                </div>
-                <div class="service-content">
-                    <h3>Interior Painting</h3>
-                    <p>Refresh your living spaces with premium washable paints, accurate finishes, and safe, odor-free colors.</p>
-                    <a href="#" class="service-link">Explore Interiors <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
+    <!-- Premium Services Grid -->
+    <section id="services" class="py-24 bg-luxury-charcoal text-white px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-serif mb-4 text-white">Elite Craftsmanship Services</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto font-light">Delivering perfection across every spectrum of interior and exterior transformation.</p>
             </div>
             
-            <div class="service-card">
-                <div class="service-img">
-                    <img src="image/paint7.webp" alt="Exterior Painting">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-luxury-matte p-8 border border-white/5 hover:border-luxury-gold/50 transition-colors reveal">
+                    <h3 class="text-xl font-serif text-luxury-gold mb-3">Luxury Wall Finishes</h3>
+                    <p class="text-gray-400 font-light text-sm">Premium texture painting, decorative finishes, and flawless wall putty applications that redefine elegance.</p>
                 </div>
-                <div class="service-content">
-                    <h3>Exterior Painting</h3>
-                    <p>Weather-proof your home with durable exterior textures and waterproofing coats that last for years.</p>
-                    <a href="#" class="service-link">Explore Exteriors <i class="fa-solid fa-arrow-right"></i></a>
+                <!-- Service 2 -->
+                <div class="bg-luxury-matte p-8 border border-white/5 hover:border-luxury-gold/50 transition-colors reveal">
+                    <h3 class="text-xl font-serif text-luxury-gold mb-3">Wood & PU Polish</h3>
+                    <p class="text-gray-400 font-light text-sm">High-end wood treatments, melamine, and PU polishing that protect and highlight natural wood grains.</p>
                 </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img">
-                    <img src="image/paint3.webp" alt="Texture & Murals">
-                </div>
-                <div class="service-content">
-                    <h3>Textures & Wall Murals</h3>
-                    <p>Elevate your accent walls with custom textures, stencils, or premium hand-painted murals.</p>
-                    <a href="#" class="service-link">View Textures <i class="fa-solid fa-arrow-right"></i></a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-img">
-                    <img src="image/paint8.webp" alt="Wood & Metal">
-                </div>
-                <div class="service-content">
-                    <h3>Wood & Metal Polish</h3>
-                    <p>Restore the shine of your doors, windows, and grills with high-quality PU polish and enamels.</p>
-                    <a href="#" class="service-link">Learn More <i class="fa-solid fa-arrow-right"></i></a>
+                <!-- Service 3 -->
+                <div class="bg-luxury-matte p-8 border border-white/5 hover:border-luxury-gold/50 transition-colors reveal">
+                    <h3 class="text-xl font-serif text-luxury-gold mb-3">Weatherproof Exteriors</h3>
+                    <p class="text-gray-400 font-light text-sm">Advanced exterior painting and complete waterproofing solutions designed to withstand the harsh Indian climate.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="process" class="trust-section">
-        <h2 class="section-title">How PaintByMuin Works</h2>
-        <p>A seamless, transparent, and professional experience from start to finish.</p>
-        
-        <div class="process-steps">
-            <div class="step">
-                <div class="step-icon"><i class="fa-solid fa-house-circle-check"></i></div>
-                <h4>1. Free Site Visit</h4>
-                <p>Our expert visits your home, inspects the walls, and takes accurate laser measurements.</p>
+    <!-- Signature Transformations Gallery -->
+    <section id="projects" class="py-24 bg-luxury-matte px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-serif mb-4 text-white">Signature Transformations</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto font-light">A showcase of craftsmanship, detailing, texture, and premium finishes delivered across Agra and surrounding cities.</p>
             </div>
-            <div class="step">
-                <div class="step-icon"><i class="fa-solid fa-file-invoice-dollar"></i></div>
-                <h4>2. Transparent Quote</h4>
-                <p>Get a detailed, itemized estimate with zero hidden charges. You choose the paint brand.</p>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="fa-solid fa-paint-roller"></i></div>
-                <h4>3. Flawless Execution</h4>
-                <p>A dedicated project manager oversees masking, surface prep, and painting.</p>
-            </div>
-            <div class="step">
-                <div class="step-icon"><i class="fa-solid fa-face-smile"></i></div>
-                <h4>4. Site Cleanup</h4>
-                <p>We leave your house perfectly clean, beautifully painted, and ready to enjoy.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Replace src with your actual image files from repo -->
+                <div class="relative group overflow-hidden bg-luxury-charcoal aspect-square md:col-span-2 md:row-span-2 reveal">
+                    <img src="paint2.webp" alt="Project 1" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                        <span class="text-luxury-gold uppercase tracking-widest text-sm font-medium border border-luxury-gold px-6 py-2">Premium Finish</span>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden bg-luxury-charcoal aspect-square reveal">
+                    <img src="paint3.webp" alt="Project 2" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="relative group overflow-hidden bg-luxury-charcoal aspect-square reveal">
+                    <img src="paint4.webp" alt="Project 3" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="relative group overflow-hidden bg-luxury-charcoal aspect-square reveal">
+                    <img src="paint5.webp" alt="Project 4" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="relative group overflow-hidden bg-luxury-charcoal aspect-square reveal">
+                    <img src="paint6.webp" alt="Project 5" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="relative group overflow-hidden bg-luxury-charcoal aspect-square md:col-span-2 md:row-span-2 reveal">
+                    <img src="paint7.webp" alt="Project 6" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                        <span class="text-luxury-gold uppercase tracking-widest text-sm font-medium border border-luxury-gold px-6 py-2">Wood Polish</span>
+                    </div>
+                </div>
+                <div class="relative group overflow-hidden bg-luxury-charcoal aspect-square reveal">
+                    <img src="paint8.webp" alt="Project 7" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                </div>
+                <div class="relative group overflow-hidden bg-luxury-charcoal aspect-square reveal">
+                    <img src="paint9.webp" alt="Project 8" class="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110">
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="gallery-section section">
-        <h2 class="section-title">Our Premium Projects</h2>
-        <p class="section-subtitle">Take a look at the spaces we've transformed</p>
-        
-        <div class="gallery-grid">
-            <div class="gallery-item"><img src="image/paint4.webp" alt="Project 1"></div>
-            <div class="gallery-item"><img src="image/paint6.webp" alt="Project 2"></div>
-            <div class="gallery-item"><img src="image/paint9.webp" alt="Project 3"></div>
-            <div class="gallery-item"><img src="image/paint2.webp" alt="Project 4"></div>
-            <div class="gallery-item"><img src="image/paint1.webp" alt="Project 5"></div>
-            <div class="gallery-item">
-                <img src="image/CO.png" alt="Expert Painter" style="object-position: top;">
+    <!-- Contact Section with Web3Forms -->
+    <section id="contact" class="py-24 bg-luxury-warmWhite text-luxury-charcoal px-4">
+        <div class="max-w-5xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <div class="reveal">
+                <h2 class="text-4xl font-serif text-luxury-charcoal mb-6">Request a Consultation</h2>
+                <p class="text-gray-600 mb-8 font-light">Ready to elevate your space? Contact us to discuss your vision, materials, and timeline. Serving Agra, Bharatpur, Hathras, Aligarh, and Noida.</p>
+                
+                <div class="space-y-6 mt-8">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-luxury-charcoal text-luxury-gold flex items-center justify-center rounded-full">📞</div>
+                        <div>
+                            <p class="text-sm text-gray-500">Call or WhatsApp</p>
+                            <p class="font-medium">+91 8449366130</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-luxury-charcoal text-luxury-gold flex items-center justify-center rounded-full">✉️</div>
+                        <div>
+                            <p class="text-sm text-gray-500">Email Us</p>
+                            <p class="font-medium">mmcontractor092@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-luxury-charcoal text-luxury-gold flex items-center justify-center rounded-full">📍</div>
+                        <div>
+                            <p class="text-sm text-gray-500">Headquarters</p>
+                            <p class="font-medium">Plot No 34, 35 Sheela Kunj,<br>Bodla, Agra, UP 282007</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 shadow-xl reveal">
+                <!-- Web3Forms Standard HTML Form -->
+                <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+                    <!-- Access Key -->
+                    <input type="hidden" name="access_key" value="464ee84c-7f26-4b40-b6ba-72888b1fff57">
+                    <!-- Subject -->
+                    <input type="hidden" name="subject" value="New Luxury Consultation Request - Paint By Muin">
+                    <!-- Redirect to homepage on success -->
+                    <input type="hidden" name="redirect" value="https://paintbymuin.co.in/">
+
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-2">Full Name</label>
+                        <input type="text" name="name" required class="w-full bg-transparent border-b border-gray-300 focus:border-luxury-gold outline-none py-2 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-2">Phone Number</label>
+                        <input type="tel" name="phone" required class="w-full bg-transparent border-b border-gray-300 focus:border-luxury-gold outline-none py-2 transition-colors">
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-600 mb-2">Project Details</label>
+                        <textarea name="message" rows="4" required class="w-full bg-transparent border-b border-gray-300 focus:border-luxury-gold outline-none py-2 transition-colors resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-luxury-charcoal hover:bg-black text-luxury-gold py-4 font-semibold uppercase tracking-wider transition-colors mt-4">
+                        Submit Request
+                    </button>
+                </form>
             </div>
         </div>
     </section>
 
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-col">
-                <a href="#" class="footer-logo">PaintBy<span>Muin</span></a>
-                <p>Your trusted partner for home painting, waterproofing, and custom wall textures. Bringing colors to life with professional expertise.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Our Services</h4>
-                <ul>
-                    <li><a href="#">Interior Painting</a></li>
-                    <li><a href="#">Exterior Painting</a></li>
-                    <li><a href="#">Waterproofing</a></li>
-                    <li><a href="#">Wood Polish</a></li>
-                    <li><a href="#">Custom Wall Art</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Paint Cost Calculator</a></li>
-                    <li><a href="#">Color Catalog</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact Info</h4>
-                <ul style="color: #94a3b8;">
-                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-location-dot"></i> Mumbai, Maharashtra, India</li>
-                    <li style="margin-bottom: 15px;"><i class="fa-solid fa-phone"></i> +91 98765 43210</li>
-                    <li><a href="mailto:info@paintbymuin.in">info@paintbymuin.in</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="footer-bottom">
-            <div>&copy; 2026 PaintByMuin. All Rights Reserved.</div>
-            <div class="developer-credit">This website developed by <a href="https://knoxit.in" target="_blank">Knoxit.in</a></div>
+    <!-- Footer -->
+    <footer class="bg-luxury-charcoal text-gray-400 py-12 border-t border-white/10 text-center">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="font-serif text-2xl text-white tracking-wider mb-4">PAINT BY <span class="text-luxury-gold">MUIN</span></h2>
+            <p class="font-light mb-6">Premium Painting For Elegant Spaces</p>
+            <p class="text-sm">&copy; 2024 Paint By Muin. All rights reserved. Crafted with excellence in Agra.</p>
         </div>
     </footer>
 
-    <a href="https://wa.me/910000000000" class="whatsapp-btn" target="_blank">
-        <i class="fa-brands fa-whatsapp"></i>
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/918449366130" target="_blank" rel="noopener noreferrer" class="fixed bottom-6 right-6 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform duration-300 flex items-center justify-center group">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
     </a>
 
+    <!-- Vanilla JS for Scroll Animations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const reveals = document.querySelectorAll(".reveal");
+            
+            const revealOnScroll = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target); // Runs once
+                    }
+                });
+            }, { threshold: 0.15 });
+
+            reveals.forEach(reveal => {
+                revealOnScroll.observe(reveal);
+            });
+        });
+    </script>
 </body>
 </html>
